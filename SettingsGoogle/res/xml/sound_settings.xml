@@ -11,7 +11,8 @@
         android:order="-185"
         android:title=""
         settings:allowDividerBelow="true"
-        settings:controller="com.android.settings.notification.RemoteVolumeGroupController" />
+        settings:controller="com.android.settings.notification.RemoteVolumeGroupController">
+    </PreferenceCategory>
 
     <com.android.settings.notification.VolumeSeekBarPreference
         android:icon="@drawable/ic_media_stream"
@@ -25,6 +26,7 @@
         android:key="media_output"
         android:order="-175"
         android:title="@string/media_output_title"
+        settings:searchable="false"
         settings:controller="com.android.settings.sound.MediaOutputPreferenceController" />
 
     <com.android.settings.notification.VolumeSeekBarPreference
@@ -43,7 +45,7 @@
         settings:searchable="false" />
 
     <com.android.settings.notification.VolumeSeekBarPreference
-        android:icon="@drawable/ic_volume_ringer"
+        android:icon="@drawable/ic_notifications"
         android:key="ring_volume"
         android:order="-160"
         android:title="@string/ring_volume_option_title"
@@ -72,15 +74,8 @@
         android:title="@string/alarm_volume_option_title"
         settings:controller="com.android.settings.notification.AlarmVolumePreferenceController" />
 
-    <!-- Link ringtone and notification volumes -->
-    <SwitchPreference
-        android:key="volume_link_notification"
-        android:title="@string/volume_link_notification_title"
-        android:order="-138"
-        settings:controller="com.android.settings.notification.LinkedVolumesPreferenceController"/>
-
     <!-- Increasing ring -->
-    <com.evolution.settings.preference.SystemSettingSwitchPreference
+    <com.bliss.support.preferences.SystemSettingSwitchPreference
         android:key="increasing_ring"
         android:order="-136"
         android:title="@string/increasing_ring_volume_option_title"
@@ -94,6 +89,13 @@
         android:order="-135"
         android:dependency="increasing_ring"
         settings:controller="com.android.settings.notification.IncreasingRingVolumePreferenceController" />
+
+    <!-- Separate ring & notification toggle -->
+    <SwitchPreference
+        android:key="volume_separate_notification"
+        android:title="@string/volume_separate_notification_title"
+        android:summary="@string/volume_separate_notification_summary"
+        android:order="-135"/>
 
     <com.android.settingslib.RestrictedPreference
         android:fragment="com.android.settings.notification.zen.ZenModeSettings"
@@ -123,13 +125,6 @@
         android:order="-119"
         settings:keywords="@string/sound_settings" />
 
-    <!-- Adaptive Playback -->
-    <Preference
-        android:fragment="com.android.settings.sound.AdaptivePlaybackSoundSettings"
-        android:key="sound_adaptive_playback_summary"
-        android:order="-114"
-        android:title="@string/adaptive_playback_screen_title"
-        settings:controller="com.android.settings.sound.AdaptivePlaybackParentPreferenceController" />
 
     <Preference
         android:fragment="com.android.settings.notification.SpatialAudioSettings"
@@ -154,22 +149,6 @@
         settings:controller="com.android.settings.accessibility.VibrationPreferenceController"
         settings:keywords="@string/keywords_vibration" />
 
-    <ListPreference
-        android:key="vibration_pattern"
-        android:order="-85"
-        android:title="@string/vibration_pattern_title"
-        android:entries="@array/vibration_pattern_entries"
-        android:entryValues="@array/vibration_pattern_values" />
-
-    <!-- Custom ringtone vibration pattern preference -->
-    <Preference
-        android:fragment="com.android.settings.sound.CustomVibrationPreferenceFragment"
-        android:key="custom_vibration_pattern"
-        android:order="-83"
-        android:summary="@string/custom_vibration_pattern_summary"
-        android:title="@string/custom_vibration_pattern_title"
-        android:visibility="gone"/>
-
     <com.android.settingslib.PrimarySwitchPreference
         android:fragment="com.android.settings.gestures.PreventRingingGestureSettings"
         android:key="gesture_prevent_ringing_sound"
@@ -185,22 +164,6 @@
         android:summary="@string/summary_placeholder"
         android:title="@string/notification_ringtone_title" />
 
-    <ListPreference
-        android:key="notification_vibration_pattern"
-        android:order="-67"
-        android:title="@string/notification_vibration_pattern_title"
-        android:entries="@array/notification_vibration_pattern_entries"
-        android:entryValues="@array/vibration_pattern_values"
-        android:defaultValue="0" />
-
-    <!-- Custom notification vibration pattern preference -->
-    <Preference
-        android:key="custom_notification_vibration_pattern"
-        android:order="-63"
-        android:title="@string/custom_vibration_pattern_title"
-        android:summary="@string/custom_vibration_pattern_summary"
-        android:fragment="com.android.settings.sound.CustomNotificationVibrationPreferenceFragment"
-        android:visibility="gone" />
 
     <com.android.settings.DefaultRingtonePreference
         android:dialogTitle="@string/alarm_ringtone_title"
@@ -210,13 +173,6 @@
         android:ringtoneType="alarm"
         android:summary="@string/summary_placeholder"
         android:title="@string/alarm_ringtone_title" />
-
-    <com.evolution.settings.preference.SystemSettingSwitchPreference
-        android:key="show_app_volume"
-        android:order="-58"
-        android:title="@string/app_volume_title"
-        android:summary="@string/app_volume_summary"
-        android:defaultValue="false" />
 
     <Preference
         android:fragment="com.google.android.settings.notification.ClearCallingSettings"
@@ -232,11 +188,6 @@
         android:title="@string/dial_pad_tones_title" />
 
     <SwitchPreference
-        android:key="in_call_notifications"
-        android:order="-47"
-        android:title="@string/in_call_notifications_title" />
-
-    <SwitchPreference
         android:key="screen_locking_sounds"
         android:order="-45"
         android:title="@string/screen_locking_sounds_title" />
@@ -244,12 +195,9 @@
     <SwitchPreference
         android:key="charging_sounds"
         android:order="-40"
-        android:title="@string/charging_sounds_custom_title" />
+        android:title="@string/charging_sounds_title" />
 
-    <SwitchPreference
-        android:key="charging_vibro"
-        android:order="-39"
-        android:title="@string/charging_vibro_title" />
+
 
     <SwitchPreference
         android:key="docking_sounds"
@@ -261,23 +209,13 @@
         android:order="-30"
         android:title="@string/touch_sounds_title" />
 
-    <SwitchPreference
-        android:key="nfc_sounds"
-        android:order="-28"
-        android:title="@string/nfc_sounds_title" />
-
-    <SwitchPreference
-        android:key="vibrate_icon"
-        android:order="-27"
-        android:title="@string/vibrate_icon_title" />
-
-    <!-- Bightness slider haptic -->
-    <com.evolution.settings.preference.SystemSettingSwitchPreference
-        android:key="brightness_slider_haptic_enabled"
-        android:order="-26"
-        android:title="@string/brightness_slider_haptic_title"
+    <!-- Volume panel to left -->
+    <com.bliss.support.preferences.SecureSettingSwitchPreference
+        android:key="volume_panel_on_left"
+        android:title="@string/volume_panel_on_left_title"
+        android:summary="@string/volume_panel_on_left_summary"
         android:defaultValue="false"
-        settings:controller="com.android.settings.sound.BrightnessSliderHapticPreferenceController" />
+        android:order="-28" />
 
     <DropDownPreference
         android:key="dock_audio_media"
@@ -295,18 +233,6 @@
         android:order="-15"
         android:summary="%s"
         android:title="@string/emergency_tone_title" />
-
-    <PreferenceCategory
-        android:key="ringer_mute_cat"
-        android:title="@string/ringer_mute_speaker_media_title">
-
-        <Preference
-            android:key="ringer_mute_pref"
-            android:title="@string/ringer_mute_speaker_media_title"
-            android:fragment="com.android.settings.RingerMuteSettings"
-            android:order="-4"/>
-
-    </PreferenceCategory>
 
     <Preference
         android:fragment="com.android.settings.notification.SoundWorkSettings"

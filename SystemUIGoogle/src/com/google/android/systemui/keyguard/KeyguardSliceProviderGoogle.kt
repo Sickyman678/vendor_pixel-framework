@@ -128,7 +128,7 @@ class KeyguardSliceProviderGoogle : KeyguardSliceProvider(), SmartSpaceUpdateLis
         }
     }
 
-    private fun addWeather(listBuilder: ListBuilder) {
+    /*private fun addWeather(listBuilder: ListBuilder) {
         val weatherCard = smartSpaceData!!.weatherCard
         if (weatherCard != null && !weatherCard.isExpired) {
             val builder = RowBuilder(weatherUri).setTitle(weatherCard.title)
@@ -140,7 +140,7 @@ class KeyguardSliceProviderGoogle : KeyguardSliceProvider(), SmartSpaceUpdateLis
             }
             listBuilder.addRow(builder)
         }
-    }
+    }*/
 
     override fun onSensitiveModeChanged(hideSensitive: Boolean, hideWork: Boolean) {
         var notify = false

@@ -2,8 +2,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res-auto"
-    android:key="system_dashboard_screen"
-    android:title="@string/header_category_system">
+    android:key="system_dashboard_screen">
 
     <Preference
         android:fragment="com.android.settings.language.LanguageAndInputSettings"

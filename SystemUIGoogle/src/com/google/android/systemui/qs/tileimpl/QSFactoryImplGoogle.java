@@ -25,7 +25,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.util.leak.GarbageMonitor;
 
 // Custom
-import com.android.systemui.qs.tiles.PowerShareTile;
+//import com.android.systemui.qs.tiles.PowerShareTile;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
